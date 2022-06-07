@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin | Nuevo producto</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+	<header th:insert="fragments/menu :: menu-principal"></header>
+	
+	<div class="container card-body">
+		<form th:action="@{/admin/productos/guardar}" method="post">
+		<div class="row">
+			<div class="col-md-6">
+				<label for="nombre">Nombre:</label>
+				<input type="text" class="form-control mb-3" id="nombre" name="nombre" placeholder="Zapatillas de correr" required="true" >
+			</div>
+			<div class="col-md-6">
+				<label for="nombre">Precio:</label>
+				<input type="text" class="form-control mb-3" id="precio" name="precio" placeholder="9.99" required="true" >
+			</div>
+		</div>
+			
+			<label for="categoria">Categoria:</label>
+			<select class="form-select mb-3" id="categoria" name="categoria">
+				<option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:text="${#strings.capitalize(categoria.nombre)}" class="mb-3"></option>
+			</select>
+			
+			<label for="nombre">Descripción:</label>
+			<textarea class="form-control mb-3" id="descripcion" name="descripcion" placeholder="Zapatillas de correr con cremallera para no tropezar mientras trotas" required="true" ></textarea>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<label for="oferta">Oferta:</label>
+					<select class="form-select" id="oferta" name="oferta">
+						<option value="0">Sin oferta</option>
+						<option th:each="oferta : ${listaOfertas}" th:value="${oferta.id}" th:text="${oferta.cantidad}" class="mb-3"></option>
+					</select>
+				</div>
+				
+				<div class="col-md-3 mb-3">
+					<div class="form-check">
+						<label class="form-check-label"></label><br>
+						<input class="form-check-input" type="radio" name="publico" id="publico" value="1">
+						<label class="form-check-label" for="destacado1">Público</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="publico" id="publico" value="0" checked="checked">
+						<label class="form-check-label" for="destacado2">Privado</label>
+					</div>
+				</div>
+				<div class="col-md-3 mb-3">
+					<div class="form-check">
+						<label class="form-check-label"></label><br>
+						<input class="form-check-input" type="radio" name="activo" id="activo" value="1">
+						<label class="form-check-label" for="destacado1">Activo</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="activo" id="activo" value="0" checked="checked">
+						<label class="form-check-label" for="destacado2">No activo</label>
+					</div>
+			</div>
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

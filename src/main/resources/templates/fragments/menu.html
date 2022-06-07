@@ -1,0 +1,8 @@
+<nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-danger bg-light bg-gradient border-bottom border-warning border-2 p-3 mb-4">
+	<a href="#" class="navbar-brand m-auto text-reset font-monospace fw-bold fs-3">eCommerceApp</a>
+	<div sec:authorize="isAuthenticated()">
+		<span th:if="${session.usuario != null}" class="fw-bold" th:text="'Bienvenido ' + ${session.usuario.nombre}"></span>&nbsp;
+		<a th:href="@{/logout}" class="btn btn-primary">Salir</a>
+	
+	</div>
+</nav>
